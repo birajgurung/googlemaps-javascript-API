@@ -1,0 +1,5 @@
+1) Get api code(token) from google developers console
+2) Get the map showing on the page by providing the longitude and latitude value
+3) Add a marker on the map to show a specific place by providing longitude and latitude value
+(you can add multiple marker)
+4) Added a custom  icon instead of the marker

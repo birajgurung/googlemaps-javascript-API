@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name ="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=ie-edge">
+  <title>Google map</title>
+  <style>
+  #map{
+    height: 400px;
+    width:100%;
+  }
+  </style>
+
+</head>
+<body>
+
+  <h1>Using the Google Map Javascript API to show google map</h1>
+  <div id="map"></div>
+
+<script>
+  function initMap(){
+    //Map options
+    var options ={
+      zoom:8,
+      center:{lat:51.5074, lng:0.1278}
+    }
+
+    //New map
+    var map = new google.maps.Map(document.getElementById('map'), options);
+    /*
+    //Add marker
+    var marker = new google.maps.Marker({
+      position:{lat:51.4623, lng:-0.1097},
+      map:map,
+      icon:'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
+    });
+
+    var infoWindow = new google.maps.InfoWindow({
+      content:'<h2> Welling, This is where i live. </h2>'
+    });
+
+    marker.addListener('click', function(){
+      infoWindow.open(map, marker);
+    });
+    */
+
+    // Array of markers
+    var markers = [
+      {
+        coordinates:{lat:51.4623, lng:0.1097},
+        content:'<h1>Welling. This is where i live.</h1>'
+
+      },
+      {
+        coordinates:{lat:51.1279, lng:1.3134},
+        iconImage:'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+        content:'<h1>Dover. There is a nice beach.</h1>'
+      },
+      {
+        coordinates:{lat:50.8225, lng:0.1372},
+        iconImage:'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+        content:'<h1>Brighton. There is a nice beach here.</h1>'
+      },
+      {
+        coordinates:{lat:51.7950, lng:-1.8839},
+        content:'<h1>Cotswolds . Beautiful Natural Beauty.</h1>'
+      }
+
+    ];
+
+    // loop through markers
+    for(var i = 0; i < markers.length; i++){
+      addMarker(markers[i]);
+    }
+
+    //Add Marker function ; so you can  add multiple markers
+    function addMarker(props){
+      var marker = new google.maps.Marker({
+        position:props.coordinates,
+        map:map,
+        //icon:props.iconImage
+      });
+
+      //check for custom icon
+      if(props.iconImage){
+        //Set icon image
+        marker.setIcon(props.iconImage);
+      }
+
+      //Check content
+      if(props.content){
+        var infoWindow = new google.maps.InfoWindow({
+          content:props.content
+        });
+
+        marker.addListener('click', function(){
+          infoWindow.open(map, marker);
+        });
+      }
+
+    }
+}
+</script>
+
+
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5cTWM3CKWvGyHga_t1uMZ5yjOOQJnNTA&callback=initMap">
+    </script>
+
+
+</body>
+</html>
